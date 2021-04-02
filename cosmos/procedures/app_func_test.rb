@@ -163,6 +163,10 @@ module AppFuncTest
 	    expected_result = 
 		   (cmd_error_cnt == tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_ERR}")) and
 		   (cmd_valid_cnt == tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_VLD}") + 1)
+
+puts tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_VLD}") 
+puts cmd_valid_cnt 
+
 	end #else if
 
       end # If cmd sequence count changed

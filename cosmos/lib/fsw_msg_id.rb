@@ -159,8 +159,13 @@ module Fsw
 
       DOSI_CMD_MID            = "0x1F54" #8020
       DOSI_SEND_HK_MID        = "0x1F55" #8021
-      DOSI_HK_TLM_MID         = "0x1F54"
+      DOSI_HK_TLM_MID         = "0x1F56" #8022
 
+      # Single Bit Error Inject Command
+      
+      SBEI_CMD_MID            = "0x1F5E" #8030
+      SBEI_SEND_HK_MID        = "0x1F5F" #8031
+      SBEI_HK_TLM_MID         = "0x1F60" #8032
   
       #########################
       ## Kit App Message IDs ##

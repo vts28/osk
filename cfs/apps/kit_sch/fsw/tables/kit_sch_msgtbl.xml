@@ -86,6 +86,12 @@ primary header that must be big endian:
   <!-- DOSD_SEND_HK_MID 0x1F4B(8011) => 0xAC18(44056), 0xC000(49152) => 0x00C0(192), 0x0001 => 0x0100(256) -->
   <entry  id="23"  stream-id="44056" seq-seg="192" length="256" />
 
+  <!-- DOSI_SEND_HK_MID 0x1F55(8021) => 0xAC18(44056), 0xC000(49152) => 0x00C0(192), 0x0001 => 0x0100(256) -->
+  <entry  id="24"  stream-id="44312" seq-seg="192" length="256" />
+
+  <!-- SBEI_SEND_HK_MID 0x1F5F(8031) => 0xAC18(44056), 0xC000(49152) => 0x00C0(192), 0x0001 => 0x0100(256) -->
+  <entry  id="25"  stream-id="44568" seq-seg="192" length="256" />
+
   <!--******************-->
   <!--**** Kit Apps ****-->
   <!--******************-->

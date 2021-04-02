@@ -291,7 +291,27 @@
                "offset":  0,
                "msg-idx": 43
             }},
-            
+
+            {"activity": {
+               "name":    "DOSI Housekeeping",
+               "descr":   "",
+               "index":   3,
+               "enabled": "true",
+               "period":  4,
+               "offset":  0,
+               "msg-idx": 24
+            }},
+
+            {"activity": {
+               "name":    "SBEI Housekeeping",
+               "descr":   "",
+               "index":   4,
+               "enabled": "true",
+               "period":  4,
+               "offset":  0,
+               "msg-idx": 25
+            }},
+
             {"activity": {
                "name":    "FILEMGR Housekeeping",
                "descr":   "",
@@ -368,8 +388,8 @@
                "name":    "DOSD Housekeeping",
                "descr":   "",
                "index":   14,
-               "enabled": "false",
-               "period":  0,
+               "enabled": "true",
+               "period":  4,
                "offset":  0,
                "msg-idx": 23
             }}

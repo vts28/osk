@@ -28,28 +28,22 @@ class DosdFuncTest < Cosmos::Test
 
    #DOSD needs to be tested supervised. tftp disconnects after detection & cannot get valid count
    def test_detect_cmd
-      puts "IN DETECTION TEST"
       @app = Osk::flight.app["DOSD"]
       target_hk_str = "#{app.target} #{app.hk_pkt}"
       cmd_valid_cnt = tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_VLD}")
       cmd_error_cnt = tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_ERR}")
+      ip = `hostname -I`
+      Osk::flight.send_cmd("DOSD","DETECT with APP_STATE 1");
 
-      Osk::flight.send_cmd("DOSD","DETECT")
-      wait(2)
-      system("gnome-terminal --title='Injecting Flood Attack...' -e 'sudo netwox 76 -i 10.0.2.15 -p 23 -s raw'");
-      wait(3)
+      system("gnome-terminal --title='Injecting Flood Attack...' -e 'sudo timeout 10s netwox 76 -i #{ip} -p 23 -s raw' >/dev/null 2>&1 &");
 
-   # Osk::flight.send_cmd("CFE_ES","START_APP with APP_NAME 'DOSD', APP_ENTRY_POINT 'DOSD_AppMain', APP_FILENAME '/cf/dosd.so'")
+      wait(10)
+      puts (cmd_valid_cnt.to_s + " valid count before")
+      puts (tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_VLD}").to_s + " valid count after")
+      expected_result = cmd_valid_cnt+1 == tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_VLD}") and (cmd_error_cnt == tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_ERR}")) 
 
-
-      #as long as command is not invalid
-      expected_result = 
-      (cmd_error_cnt == tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_ERR}")) 
-	#and cmd_valid_cnt == tlm("#{target_hk_str} #{Osk::TLM_STR_CMD_VLD}")+1  #cannot increment when tftp stop
-	
-      puts expected_result
       raise "Failed detect command verification" unless expected_result
-   end #end test_detect_cmd
+   end 
 
 
    def helper_method

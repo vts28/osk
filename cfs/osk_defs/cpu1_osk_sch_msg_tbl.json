@@ -192,6 +192,24 @@
       }},
 
       {"message": {
+         "name":  "DOSI_SEND_HK_MID",
+         "descr": "0x1F55(8021), 0xC000(49152), 0x0001",
+         "id": 24,
+         "stream-id": 8021,
+         "seq-seg": 49152,
+         "length": 1
+      }},
+
+      {"message": {
+         "name":  "SBEI_SEND_HK_MID",
+         "descr": "0x1F55(8031), 0xC000(49152), 0x0001",
+         "id": 25,
+         "stream-id": 8031,
+         "seq-seg": 49152,
+         "length": 1
+      }},
+
+      {"message": {
          "name":  "HK_SEND_COMBINED_PKT_MID: HK_COMBINED_PKT1_MID",
          "descr": "0x189C(6300), 0xC000(49152), 0x0003, Data: Cmd secondary header(0), 0x089C (2204)",
          "id": 24,

@@ -731,6 +731,26 @@
          "reliability": 0,
          "buf-limit": 4
          "filter": { "type": 2, "X": 1, "N": 1, "O": 0}
+      },
+
+      "packet": {
+         "name": "DOSI_HK_TLM_MID",
+         "stream-id": "\u1F56",
+         "dec-id": 8022,
+         "priority": 0,
+         "reliability": 0,
+         "buf-limit": 4
+         "filter": { "type": 2, "X": 1, "N": 1, "O": 0}
+      },
+
+      "packet": {
+         "name": "SBEI_HK_TLM_MID",
+         "stream-id": "\u1F60",
+         "dec-id": 8032,
+         "priority": 0,
+         "reliability": 0,
+         "buf-limit": 4
+         "filter": { "type": 2, "X": 1, "N": 1, "O": 0}
       }
       
    ]

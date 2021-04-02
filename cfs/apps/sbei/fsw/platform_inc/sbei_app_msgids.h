@@ -1,30 +1,30 @@
 /************************************************************************
 ** File:
-**   $Id: dosi_app_msgids.h  $
+**   $Id: sbei_app_msgids.h  $
 **
 ** Purpose: 
-**  Define Dosi App  Message IDs
+**  Define Sbei App  Message IDs
 **
 ** Notes:
 **   1. Default to OSK test IDs. These IDs should be changed if the app
 **      is integrated with the user's system.
 **
 *************************************************************************/
-#ifndef _dosi_app_msgids_h_
-#define _dosi_app_msgids_h_
+#ifndef _sbei_app_msgids_h_
+#define _sbei_app_msgids_h_
 
 /*
 ** Command Message IDs
 */
 
-#define  DOSI_CMD_MID        0x1F54
-#define  DOSI_SEND_HK_MID    0x1F55
+#define  SBEI_CMD_MID        0x1F5E
+#define  SBEI_SEND_HK_MID    0x1F5F
 
 
 /*
 ** Telemetry Message IDs
 */
 
-#define  DOSI_HK_TLM_MID     0x1F56
+#define  SBEI_HK_TLM_MID     0x1F60
 
-#endif /* _dosi_app_msgids_h_ */
+#endif /* _sbei_app_msgids_h_ */

@@ -57,7 +57,8 @@
    { "OSK_CPP_DEMO": { "load-on-init": false }},
    { "TFTP":         { "load-on-init": true  }},
    { "DOSD":         { "load-on-init": true  }},
-   { "DOSI":         { "load-on-init": true  }}
+   { "DOSI":         { "load-on-init": true  }},
+   { "SBEI":         { "load-on-init": true  }}
 
    
    ]

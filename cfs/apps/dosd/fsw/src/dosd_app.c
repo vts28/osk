@@ -188,6 +188,10 @@ int32 DOSD_AppInit(void)
     DOSD_AppData.LimitHK   = DOSD_LIMIT_HK;
     DOSD_AppData.LimitCmd  = DOSD_LIMIT_CMD;
 
+
+    /*TFTP Connection State*/
+    DOSD_AppData.ConnectionState = TRUE;
+
     /*
     ** Initialize event filter table for envents we want to filter.
     */
@@ -462,28 +466,27 @@ void DOSD_HousekeepingCmd(CFE_SB_MsgPtr_t msg)
 
 void DOSD_DetectCmd(CFE_SB_MsgPtr_t msg)
 {
-    uint16 ExpectedLength = sizeof(DOSD_NoArgsCmd_t);
+    DOSD_DetectCmd_t *DOSD_DetectCmd = (DOSD_DetectCmd_t *) msg;
+    uint16 ExpectedLength = sizeof(DOSD_DetectCmd_t);
     FILE *file1;
     FILE *file2;
     int initByte;
     int byte;
     float rate;
     bool detected = false;
-
     /*
     ** Verify command packet length...
     ** Read initial byte and wait 1 sec for the second byte to get rates in kbps
     ** Threshold can be any rate depending on system. Once reached, output error and 
     ** stop TFTP app (id #15) 
     */
-
     if (DOSD_VerifyCmdLength(msg, ExpectedLength)) 
     { 
 	CFE_EVS_SendEvent (DOSD_DETECT_INF_EID, CFE_EVS_INFORMATION,
         "Detection for Denial of Service Attack Activated");
 
 	while (detected == false) {
-
+	
 	      file1 = fopen("/sys/class/net/enp0s3/statistics/rx_bytes", "r");
 	      fscanf(file1, "%d\n", &initByte);
 
@@ -497,10 +500,16 @@ void DOSD_DetectCmd(CFE_SB_MsgPtr_t msg)
 	      //printf("%f\n", rate);
 
 	      if(rate > 400.0) { 
-		 CFE_EVS_SendEvent (DOSD_DETECT_INF_EID, CFE_EVS_INFORMATION, "Network Flooding Detected, Service Disconnected\n");
+		 CFE_EVS_SendEvent (DOSD_DETECT_INF_EID, CFE_EVS_INFORMATION, "Network Flooding Detected\n");
 		 detected = true; 
-		 system("zenity --title 'Connection Error' --error --text 'Network Flooding Detected, Service Disconnected' 2> /dev/null");
-		 CFE_ES_DeleteApp(15); 
+			 
+		 if(DOSD_DetectCmd->ConnectionState == FALSE) {
+		    system("zenity --title 'Connection Error' --error --text 'Network Flooding Detected, Service Disconnected' 2> /dev/null");
+		    CFE_ES_DeleteApp(15); 
+		 } 
+		 //else {
+		   // system("zenity --title 'Connection Error' --error --text 'Network Flooding Detected, Network still connected' 2> /dev/null");
+		 //}
 	      }
 	   }
 
